@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "cdurgun-api",
+      "image": "cdurgun/cdurgun-api:latest",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ],
+      "environment": [
+        {
+          "name": "SPRING_DATASOURCE_URL",
+          "value": "jdbc:postgresql://awseb-e-mmhy4skr76-stack-awsebrdsdatabase-asfzb9rfynak.ct6ao04gy05h.eu-central-1.rds.amazonaws.com:5432/customer"
+        }
+      ]
+    }
+  ]
+}
