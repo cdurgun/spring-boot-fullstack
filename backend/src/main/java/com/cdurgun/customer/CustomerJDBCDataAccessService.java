@@ -21,7 +21,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public List<Customer> selectAllCustomers() {
         String sql = """
-                SELECT id, name, email, age 
+                SELECT id2, name, email, age 
                 FROM customer
                 """;
 //        RowMapper<Customer> customerRowMapper = (rs, rowNum) -> {
