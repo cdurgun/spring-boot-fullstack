@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "cdurgun-api",
-      "image": "cdurgun/cdurgun-api:latest",
+      "image": "cdurgun/cdurgun-api:10.05.2024.14.19.37",
       "essential": true,
       "memory": 512,
       "portMappings": [
