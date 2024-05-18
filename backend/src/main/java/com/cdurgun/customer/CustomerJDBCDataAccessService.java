@@ -21,7 +21,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public List<Customer> selectAllCustomers() {
         String sql = """
-                SELECT id, name, email, age 
+                SELECT id, name, email, age, gender 
                 FROM customer
                 """;
 //        RowMapper<Customer> customerRowMapper = (rs, rowNum) -> {
@@ -39,7 +39,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public Optional<Customer> selectCustomerById(Long id) {
         String sql = """
-                SELECT id, name, email, age 
+                SELECT id, name, email, age, gender 
                 FROM customer
                 WHERE id=?
                 """;
@@ -53,14 +53,15 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public void insertCustomer(Customer customer) {
         var sql = """
-                INSERT INTO customer(name, email, age) 
-                VALUES (?, ?, ?)
+                INSERT INTO customer(name, email, age, gender) 
+                VALUES (?, ?, ?, ?)
                 """;
         int result = jdbcTemplate.update(
                 sql,
                 customer.getName(),
                 customer.getEmail(),
-                customer.getAge()
+                customer.getAge(),
+                customer.getGender()
         );
         System.out.println("jdbcTemplate.insert:" + result);
     }
@@ -107,7 +108,8 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
                 UPDATE customer SET 
                 name = ?, 
                 email = ?,
-                age = ?
+                age = ?,
+                gender = ?
                 WHERE id = ?
                 """;
         int result = jdbcTemplate.update(
@@ -115,6 +117,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
                 customer.getName(),
                 customer.getEmail(),
                 customer.getAge(),
+                customer.getGender(),
                 customer.getId()
         );
         System.out.println("jdbcTemplate.update:" + result);

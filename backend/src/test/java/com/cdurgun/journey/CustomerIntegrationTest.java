@@ -39,10 +39,10 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "amigoscode.com";
         int age = RANDOM.nextInt(1, 100);
-
+        String gender=(RANDOM.nextInt(2) == 0) ? "M" : "F";
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age
+                name, email, age, gender
         );
         //Send a post request
 
@@ -68,7 +68,7 @@ public class CustomerIntegrationTest {
                 .getResponseBody();
         //make sure that customer is present
         Customer expectedCustomer = new Customer(
-                name, email, age
+                name, email, age, gender
         );
 
         assertThat(allCustomers)
@@ -105,10 +105,10 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "amigoscode.com";
         int age = RANDOM.nextInt(1, 100);
-
+        String gender=(RANDOM.nextInt(2) == 0) ? "M" : "F";
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age
+                name, email, age, gender
         );
         //Send a post request
 
@@ -166,10 +166,11 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "amigoscode.com";
         int age = RANDOM.nextInt(1, 100);
+        String gender=(RANDOM.nextInt(2) == 0) ? "M" : "F";
 
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age
+                name, email, age, gender
         );
         //Send a post request
 
@@ -195,7 +196,7 @@ public class CustomerIntegrationTest {
                 .getResponseBody();
         //make sure that customer is present
         Customer expectedCustomer = new Customer(
-                name, email, age
+                name, email, age, gender
         );
 
         assertThat(allCustomers)
@@ -225,15 +226,17 @@ public class CustomerIntegrationTest {
         String name2 = fakerName2.fullName();
         String email2 = fakerName2.lastName() + "-" + UUID.randomUUID() + "amigoscode.com";
         int age2 = RANDOM.nextInt(1, 100);
+        String gender2=(RANDOM.nextInt(2) == 0) ? "M" : "F";
 
         CustomerUpdateRequest updateRequest = new CustomerUpdateRequest(
                 name2,
                 email2,
-                age2
+                age2,
+                gender2
         );
 
         Customer updatedCustomer = new Customer(
-                id, name2, email2, age2
+                id, name2, email2, age2, gender2
         );
 
         //Send a put request

@@ -39,7 +39,7 @@ class CustomerServiceTest {
     void canGetCustomer() {
         long id=10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19
+                id, "Alex", "alex@gmail.com", 19, "M"
         );
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -73,7 +73,7 @@ class CustomerServiceTest {
         when(customerDao.existsCustomerWithEmail(email)).thenReturn(false);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                "Alex", email, 19
+                "Alex", email, 19, "M"
         );
 
         //When
@@ -91,6 +91,7 @@ class CustomerServiceTest {
         assertThat(capturedCustomer.getName()).isEqualTo(request.name());
         assertThat(capturedCustomer.getEmail()).isEqualTo(request.email());
         assertThat(capturedCustomer.getAge()).isEqualTo(request.age());
+        assertThat(capturedCustomer.getGender()).isEqualTo(request.gender());
 
 
 

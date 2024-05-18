@@ -28,6 +28,7 @@ public class Main {
             var faker = Faker.instance();
             Random random = new Random();
             var name=faker.name();
+            String gender=(random.nextInt(2) == 0) ? "M" : "F";
             var firstName = name.firstName().toLowerCase();
             var lastName = name.lastName().toLowerCase();
             String email = firstName  +"."+ lastName
@@ -36,7 +37,9 @@ public class Main {
             Customer customer = new Customer(
                     firstName +" "+lastName,
                     email,
-                    random.nextInt(16, 99));
+                    random.nextInt(16, 99),
+                    gender
+                    );
 
             customerRepository.save(customer);
         };
