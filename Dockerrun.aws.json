@@ -15,7 +15,7 @@
     },
     {
       "name": "cdurgun-api",
-      "image": "cdurgun/cdurgun-api:18.05.2024.15.52.33",
+      "image": "cdurgun/cdurgun-api:23.05.2024.13.34.31",
       "essential": true,
       "memory": 512,
       "portMappings": [
