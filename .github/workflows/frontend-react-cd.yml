@@ -41,8 +41,7 @@ jobs:
             USERNAME=amigoscode \
             REPO=amigoscode-react \
             TAG=${{ steps.build-number.outputs.BUILD_NUMBER }} \
-            ../../.ci/build-publish.sh . \
-              --build-arg api_base_url=http://cdurgun-api5-env.eba-at4tzyay.eu-central-1.elasticbeanstalk.com:8080
+            ../../.ci/build-publish.sh . --build-arg api_base_url=http://cdurgun-api5-env.eba-at4tzyay.eu-central-1.elasticbeanstalk.com:8080
       - name: Send Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json' 
