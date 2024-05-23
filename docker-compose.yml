@@ -1,7 +1,7 @@
 services:
   db:
     container_name: postgres
-    image: postgres:16.1
+    image: postgres:15.1
     environment:
       POSTGRES_USER: amigoscode
       POSTGRES_PASSWORD: password
@@ -25,23 +25,18 @@ services:
     depends_on:
       - db
     restart: unless-stopped
-
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
+  cdurgun-react:
+    container_name: cdurgun-react
+    image: cdurgun/cdurgun-react
+    build:
+      context: frontend/react
+      args:
+        api_base_url: http://localhost:8080
     ports:
-      - "5050:80"
-    networks:
-      - postgres
-    restart: unless-stopped
+      - "3000:5173"
     depends_on:
-      - db
+      - cdurgun-api
+    restart: unless-stopped
 
 networks:
   postgres:
@@ -49,4 +44,3 @@ networks:
 
 volumes:
   postgres:
-  pgadmin:
