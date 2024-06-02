@@ -38,12 +38,13 @@ public class Main {
             Customer customer = new Customer(
                     firstName +" "+lastName,
                     email,
-                    passwordEncoder.encode(UUID.randomUUID().toString()),
+                    passwordEncoder.encode("password"),
                     random.nextInt(16, 99),
                     gender
                     );
 
             customerRepository.save(customer);
+            System.out.println(email);
         };
     }
 

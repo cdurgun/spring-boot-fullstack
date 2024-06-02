@@ -49,7 +49,8 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                     name: '',
                     email: '',
                     age: 0,
-                    gender: ''
+                    gender: '',
+                    password: ''
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string()
@@ -61,6 +62,10 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                     age: Yup.number()
                         .min(16, 'Must be at least 16 years of age')
                         .max(100, 'Must be less than 100 years of age')
+                        .required('Required'),
+                    password: Yup.string()
+                        .min(4, 'Must be 4 characters or more')
+                        .max(15, 'Must be 20 characters or less')
                         .required('Required'),
                     gender: Yup.string()
                         .oneOf(['M', 'F'],'Invalid gender'
@@ -88,7 +93,7 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                     })
                 }}
             >
-                { ({isValid, isSubmitting}) => (
+                    { ({isValid, isSubmitting}) => (
                     <Form>
                         <Stack spacing={"24px"}>
                             <MyTextInput
@@ -103,6 +108,7 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                                 name="email"
                                 type="email"
                                 placeholder="jane@formik.com"
+                                
                             />
 
                             <MyTextInput
@@ -112,6 +118,12 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                                 placeholder="20"
                             />
 
+                            <MyTextInput
+                                label="Password"
+                                name="password"
+                                type="password"
+                                placeholder={"pick a secure password"}
+                            />
 
                             <MySelect label="Gender" name="gender">
                                 <option value="">Select gender</option>
