@@ -1,9 +1,8 @@
-<input type="text" [(ngModel)]="inputValue" >
-<button (click)="clickMe()">Click me</button>
-<p *ngIf="displayMsg">Your name is: {{ inputValue }}  </p>
-
-<p *ngFor="let elem of msgList">{{ elem }}</p>
-
-<!--
-<p *ngFor="let elem of msgListComposed">{{ elem.name + '-' + elem.visible }}</p>
--->
+<input type="text" [(ngModel)]="value1" >
+<input type="text" [(ngModel)]="value2" >
+<br>
+<p>Result = {{ result }}</p>
+<button (click)="sum()">+</button>
+<button (click)="sub()">-</button>
+<button (click)="multiply()">*</button>
+<button (click)="divide()">/</button>

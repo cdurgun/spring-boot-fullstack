@@ -1,18 +1,13 @@
-<h1>Hello Angular {{ clickCount  }}</h1>
-<h3>Last created element: {{ lastCreatedElement }} </h3>
 
-<app-my-first-component
-  [inputValue]="'Cemal - Hi!'"
-  (childClicked)="handleChildClick()"
-  (elementCreated)="displayLastCreatedElement($event)"
->
-</app-my-first-component>
-<p></p>
-<app-my-first-component
-  [inputValue]="'Ahmet - Hi!'"
-  (childClicked)="handleChildClick()"
-  (elementCreated)="displayLastCreatedElement($event)"
->
-</app-my-first-component>
+<div>
+  <a href="#">Page 1</a>&nbsp;|&nbsp;
+  <a href="#">Page 2</a>&nbsp;|&nbsp;
+  <a href="#">Page 3</a>
+
+</div>
+
+<h1>Hello Angular!</h1>
+
+<app-my-first-component></app-my-first-component>
 
 <router-outlet />

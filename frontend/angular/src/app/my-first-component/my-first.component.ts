@@ -1,45 +1,34 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {Component} from '@angular/core';
+import {MyCalculatorService} from "../services/my-calculator.service";
 
 @Component({
   selector: 'app-my-first-component',
-  standalone: true,
-  imports: [
-    FormsModule,
-    NgIf,
-    NgForOf
-  ],
   templateUrl: './my-first.component.html',
   styleUrl: './my-first.component.scss'
 })
 export class MyFirstComponent {
+  value1 = 0;
+  value2 = 0;
+  result = 0;
 
-  @Input()
-  inputValue: string = 'Hello';
-  @Output()
-  childClicked: EventEmitter<void> = new EventEmitter<void>();
+  constructor(
+    private readonly calculator: MyCalculatorService,
+  ) {
+  }
 
-  @Output()
-  elementCreated: EventEmitter<string> = new EventEmitter<string>();
+  sum() {
+    this.result = this.calculator.sum(this.value1, this.value2);
+  }
 
+  sub() {
+    this.result = this.calculator.sub(this.value1, this.value2);
+  }
 
+  multiply() {
+    this.result = this.calculator.multiply(this.value1, this.value2);
+  }
 
-  displayMsg:boolean = false;
-  msgList: Array<string> = [];
-
- // msgListComposed: any[] = [];
-
-  clickMe(): void {
-    this.msgList.push(this.inputValue);
-   /* this.msgListComposed.push({
-      name: this.inputValue,
-      visible: true
-    });*/
-    console.log(this.msgList);
-    this.childClicked.emit();
-    this.elementCreated.emit(this.inputValue);
-    this.inputValue = '';
-
+  divide() {
+    this.result = this.calculator.divide(this.value1, this.value2);
   }
 }
