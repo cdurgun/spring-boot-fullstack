@@ -16,6 +16,16 @@ import {MenuModule} from "primeng/menu";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SidebarModule} from "primeng/sidebar";
 import { ManageCustomerComponent } from './components/manage-customer/manage-customer.component';
+import { LoginComponent } from './components/login/login.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { Message } from 'primeng/api';
+import {MessageModule} from "primeng/message";
+import {MessagesModule} from "primeng/messages";
+import {HttpInterceptorService} from "./services/interceptor/http-interceptor.service";
+import { CustomerCardComponent } from './components/customer-card/customer-card.component';
+import {CardModule} from "primeng/card";
+import {BadgeModule} from "primeng/badge";
+
 
 @NgModule({
   declarations: [
@@ -24,7 +34,9 @@ import { ManageCustomerComponent } from './components/manage-customer/manage-cus
     MenuBarComponent,
     MenuItemComponent,
     HeaderBarComponent,
-    ManageCustomerComponent
+    ManageCustomerComponent,
+    LoginComponent,
+    CustomerCardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +48,20 @@ import { ManageCustomerComponent } from './components/manage-customer/manage-cus
     Ripple,
     ButtonDirective,
     MenuModule,
-    SidebarModule
+    SidebarModule,
+    HttpClientModule,
+    MessageModule,
+    MessagesModule,
+    CardModule,
+    BadgeModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
