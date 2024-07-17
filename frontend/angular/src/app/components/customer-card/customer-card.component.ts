@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CustomerDTO} from "../../models/customer-dto";
+import {ConfirmationService, ConfirmEventType, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-customer-card',
@@ -14,8 +15,29 @@ export class CustomerCardComponent {
   @Input()
   customerIndex = 0;
 
+  @Output()
+  delete: EventEmitter<CustomerDTO> = new EventEmitter<CustomerDTO>();
+
+  @Output()
+  update: EventEmitter<CustomerDTO> = new EventEmitter<CustomerDTO>();
+
+  constructor(private confirmationService: ConfirmationService,
+              private messageService: MessageService) {
+  }
+
   get customerImage(): string {
     const gender = this.customer.gender === 'M' ? 'men' : 'women';
     return `https://randomuser.me/api/portraits/${gender}/${this.customerIndex}.jpg`;
   }
+
+  onDelete() {
+    this.delete.emit(this.customer);
+
+  }
+
+  onUpdate() {
+    this.update.emit(this.customer);
+
+  }
+
 }

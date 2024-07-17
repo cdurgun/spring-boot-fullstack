@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, input, Input, OnInit, Output} from '@angular/core';
 import {CustomerRegisterationRequest} from "../../models/customer-registeration-request";
 
 @Component({
@@ -6,11 +6,21 @@ import {CustomerRegisterationRequest} from "../../models/customer-registeration-
   templateUrl: './manage-customer.component.html',
   styleUrl: './manage-customer.component.scss'
 })
-export class ManageCustomerComponent {
+export class ManageCustomerComponent implements OnInit {
   @Input()
   customer: CustomerRegisterationRequest  = {}
+  @Input()
+  operation: 'create' | 'update' = 'create';
+  title = 'New customer';
+
   @Output()
   submit: EventEmitter<CustomerRegisterationRequest> = new EventEmitter<CustomerRegisterationRequest>();
+
+  ngOnInit(): void {
+    if(this.operation === 'update') {
+      this.title = 'Update customer';
+    }
+  }
 
   get isCustomerValid():boolean {
     return this.hasLength(this.customer.name) &&
@@ -28,4 +38,6 @@ export class ManageCustomerComponent {
   onSubmit() {
     this.submit.emit(this.customer);
   }
+
+
 }

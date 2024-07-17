@@ -18,7 +18,7 @@ import {SidebarModule} from "primeng/sidebar";
 import { ManageCustomerComponent } from './components/manage-customer/manage-customer.component';
 import { LoginComponent } from './components/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {Message, MessageService} from 'primeng/api';
+import {ConfirmationService, Message, MessageService} from 'primeng/api';
 import {MessageModule} from "primeng/message";
 import {MessagesModule} from "primeng/messages";
 import {HttpInterceptorService} from "./services/interceptor/http-interceptor.service";
@@ -26,6 +26,7 @@ import { CustomerCardComponent } from './components/customer-card/customer-card.
 import {CardModule} from "primeng/card";
 import {BadgeModule} from "primeng/badge";
 import {ToastModule} from "primeng/toast";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {ToastModule} from "primeng/toast";
     MessagesModule,
     CardModule,
     BadgeModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   providers: [
     {
@@ -63,7 +65,8 @@ import {ToastModule} from "primeng/toast";
       useClass: HttpInterceptorService,
       multi: true,
     },
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

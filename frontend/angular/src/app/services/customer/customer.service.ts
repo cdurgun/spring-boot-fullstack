@@ -19,7 +19,6 @@ export class CustomerService {
   ) { }
 
   findAll() : Observable<CustomerDTO[]> {
-    let headers = CustomerService.getHeaders();
 
     return this.http.get<CustomerDTO[]>(
       this.customerUrl
@@ -30,6 +29,15 @@ export class CustomerService {
     let headers = CustomerService.getHeaders();
     return  this.http.post<void>(this.customerUrl, customer)
   }
+
+  deleteCustomer(id: number | undefined): Observable<void> {
+    return this.http.delete<void>(`${this.customerUrl}/${id}`);
+  }
+
+  updateCustomer(id: number | undefined, customer: CustomerRegisterationRequest): Observable<void> {
+    return this.http.put<void>(`${this.customerUrl}/${id}`, customer);
+  }
+
 
   private static getHeaders() {
     let headers: HttpHeaders = new HttpHeaders();
