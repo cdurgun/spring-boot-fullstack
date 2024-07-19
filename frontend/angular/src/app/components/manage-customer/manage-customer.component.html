@@ -1,5 +1,5 @@
 <div>
-    <h2>{{ title }}</h2>
+    <h2>{{ operation === 'update' ? 'Update Customer' :  'New Customer' }}</h2>
   <div class="field">
     <label for="firstName">Name</label>
     <input
@@ -65,6 +65,7 @@
   >
   </button>
   <button
+    (click)="onCancel()"
     pButton
     label = "Cancel"
     class="w-full p-button-outlined p-button-danger mt-2"

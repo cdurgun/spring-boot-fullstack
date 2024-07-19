@@ -6,28 +6,26 @@ import {CustomerRegisterationRequest} from "../../models/customer-registeration-
   templateUrl: './manage-customer.component.html',
   styleUrl: './manage-customer.component.scss'
 })
-export class ManageCustomerComponent implements OnInit {
+export class ManageCustomerComponent {
   @Input()
   customer: CustomerRegisterationRequest  = {}
   @Input()
   operation: 'create' | 'update' = 'create';
-  title = 'New customer';
 
   @Output()
   submit: EventEmitter<CustomerRegisterationRequest> = new EventEmitter<CustomerRegisterationRequest>();
-
-  ngOnInit(): void {
-    if(this.operation === 'update') {
-      this.title = 'Update customer';
-    }
-  }
+  @Output()
+  cancel:EventEmitter<void> = new EventEmitter<void>();
 
   get isCustomerValid():boolean {
     return this.hasLength(this.customer.name) &&
       this.hasLength(this.customer.email) &&
-      this.hasLength(this.customer.password) &&
-      this.hasLength(this.customer.gender) &&
-      this.customer.age !== undefined && this.customer.age > 0;
+      this.customer.age !== undefined && this.customer.age > 0 &&
+      (
+        this.operation === 'update' ||
+        this.hasLength(this.customer.password) &&
+        this.hasLength(this.customer.gender)
+      );
 
   }
 
@@ -40,4 +38,7 @@ export class ManageCustomerComponent implements OnInit {
   }
 
 
+  onCancel() {
+    this.cancel.emit();
+  }
 }
