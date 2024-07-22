@@ -27,6 +27,7 @@ import {CardModule} from "primeng/card";
 import {BadgeModule} from "primeng/badge";
 import {ToastModule} from "primeng/toast";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     HeaderBarComponent,
     ManageCustomerComponent,
     LoginComponent,
-    CustomerCardComponent
+    CustomerCardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

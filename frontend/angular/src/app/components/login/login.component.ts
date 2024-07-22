@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   authenticationRequest: AuthenticationRequest = {};
@@ -41,5 +42,9 @@ export class LoginComponent {
           console.log(err.error.statusCode);
         }
       });
+  }
+
+  register() {
+    this.router.navigate(['register']);
   }
 }
