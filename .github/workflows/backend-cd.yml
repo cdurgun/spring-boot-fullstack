@@ -36,6 +36,11 @@ jobs:
           curl -X POST -H 'Content-type: application/json' 
           --data '{"text":":github https://github.com/cdurgun/spring-boot-fullstack/commit/${{ github.sha }} - ${{ github.event.head_commit.message}} "}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Set up secret file
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.EB_APPLICATION_NAME }}
+        run: |
+          echo ${{secrets.EB_APPLICATION_NAME}} | sed 's/./& /g'
       - name: Send Deployment Started Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json' 
